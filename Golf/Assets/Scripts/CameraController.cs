@@ -5,25 +5,33 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField] GameObject golfBall;
-    private Transform camPos;
+    [SerializeField] Transform cameraAnchor;
 
-    [Range (2, 10)]
-    [SerializeField] private float zoomAmount = 2f;
+    [Range (3, 10)]
+    [SerializeField] private float zoomAmount = 3f;
+    [Range(3, 10)]
+    [SerializeField] private float smoothFactor = 10f;
+
+    //private Transform camPos;
+    private Vector3 targetPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.parent = golfBall.transform;
-        camPos = transform;
+        //transform.parent = golfBall.transform;
+        //camPos = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        zoomAmount = Mathf.Clamp(zoomAmount + (Input.mouseScrollDelta.y * -1f), 3f, 10f);
 
+        targetPosition = new Vector3(cameraAnchor.position.x + 3f, cameraAnchor.position.y + 3f, cameraAnchor.position.z);
 
-        camPos.position = new Vector3(golfBall.transform.position.x + 3, golfBall.transform.position.y + 1f, golfBall.transform.position.z);
-        transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, smoothFactor);
+
+        //camPos.position = new Vector3(golfBall.transform.position.x + zoomAmount, golfBall.transform.position.y + 1f, golfBall.transform.position.z);
+        //transform.rotation = Quaternion.Euler(0f, -90f, 0f);
     }
 }
