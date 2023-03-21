@@ -9,6 +9,6 @@ public class CameraAnchor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = golfBall.position;
+        transform.position = new Vector3(golfBall.position.x, golfBall.position.y - 0.25f, golfBall.position.z);
     }
 }
