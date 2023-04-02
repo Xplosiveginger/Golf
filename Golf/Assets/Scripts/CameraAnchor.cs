@@ -15,7 +15,6 @@ public class CameraAnchor : MonoBehaviour
     private float hRotation;
     private float vRotation;
 
-    // Update is called once per frame
     void Update()
     {
         sensitivity = sens / 10f;
