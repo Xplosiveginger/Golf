@@ -24,7 +24,14 @@ public class CameraAnchor : MonoBehaviour
 
         transform.position = new Vector3(golfBall.position.x, golfBall.position.y - 0.25f, golfBall.position.z);
 
-        currentRotation.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y + hRotation * sensitivity, transform.rotation.z + vRotation * -1 * sensitivity);
-        transform.localRotation = currentRotation;
+        currentRotation.eulerAngles = new Vector3(transform.rotation.x, 
+                                                    transform.rotation.y + hRotation * sensitivity,
+                                                    transform.rotation.z + vRotation * -1 * sensitivity);
+
+        if(!golfBall.GetComponent<BallController>().isShootingMode)
+        {
+            transform.localRotation.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, Mathf.Clamp(currentRotation.z, 30f, 130f));
+            transform.eulerAngles.z = Mathf.Clamp(currentRotation.z, 30f, 130f);
+        }
     }
 }

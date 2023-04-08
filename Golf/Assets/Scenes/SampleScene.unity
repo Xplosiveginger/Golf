@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf60d0677a701b4492c25033ed9cd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShootingMode: 0
   speed: 5
 --- !u!1 &1387056975
 GameObject:
@@ -574,7 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   golfBall: {fileID: 1257919043}
   currentRotation: {x: 0, y: 0, z: 0, w: 0}
-  sens: 1
+  sens: 10
   zoomAmount: 6.13
 --- !u!1 &1424680178
 GameObject:

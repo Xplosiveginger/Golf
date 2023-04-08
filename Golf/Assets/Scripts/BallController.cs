@@ -7,16 +7,30 @@ public class BallController : MonoBehaviour
     private float horizontal;
     private float vertical;
     private Rigidbody rb;
+    public bool isShootingMode;
 
     [SerializeField] private float speed = 2f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        isShootingMode = false;
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(isShootingMode)
+            {
+                isShootingMode = false;
+            }
+            else
+            {
+                isShootingMode = true;
+            }    
+        }
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
