@@ -30,8 +30,12 @@ public class CameraAnchor : MonoBehaviour
 
         if(!golfBall.GetComponent<BallController>().isShootingMode)
         {
-            transform.localRotation.eulerAngles = new Vector3(currentRotation.x, currentRotation.y, Mathf.Clamp(currentRotation.z, 30f, 130f));
-            transform.eulerAngles.z = Mathf.Clamp(currentRotation.z, 30f, 130f);
+            Vector3 localRot = transform.localRotation.eulerAngles;
+
+            localRot = new Vector3(currentRotation.x, currentRotation.y, Mathf.Clamp(currentRotation.z, 30f, 130f));
+            localRot.z = Mathf.Clamp(currentRotation.z, 30f, 130f);
+
+            transform.localRotation = Quaternion.Euler(localRot);
         }
     }
 }
